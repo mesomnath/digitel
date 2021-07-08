@@ -10,8 +10,16 @@
   	<description></description>
   	<servlet-class>com.login.Login</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CreateUserServlet</servlet-name>
+  	<servlet-class>com.somnath.digital.user.servlets.CreateUserServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Login</servlet-name>
   	<url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreateUserServlet</servlet-name>
+  	<url-pattern>/CreateUserServlet</url-pattern>
   </servlet-mapping>
 </web-app>
