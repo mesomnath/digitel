@@ -33,23 +33,23 @@
                         
                             <div class="form-group mt-2">
                               <label class="mb-0"><b>Name</b></label>
-                              <input type="text" class="form-control mt-0" name="name">
+                              <input type="text" class="form-control mt-0" name="name" required>
                             
                             </div>
                             <div class="form-group mt-2">
                               <label class="mb-0"><b>Telephone number</b></label>
-                              <input type="text" class="form-control" name="tel_number">
+                              <input type="text" class="form-control" name="tel_number" required>
                             </div>
                            
                             <div class="form-group mt-2">
                                 <label class="mb-0"><b>Select Stage</b></label>
-                                <select name="step" class="form-control">
-                                    <option value="initial">Initial</option>
-                                    <option value="ready">Ready to Provision</option>
-                                    <option value="provisioned">Provisioned</option>
-                                    <option value="active">Active</option>
-                                    <option value="suspended">Suspended</option>
-                                    <option value="deactivate">Deactivate</option>
+                                <select name="step" class="form-control" required>
+                                    <option value="Initial">Initial</option>
+                                    <option value="Ready to Provision">Ready to Provision</option>
+                                    <option value="Provisioned">Provisioned</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Suspended">Suspended</option>
+                                    <option value="Deactivate">Deactivate</option>
                                 </select>
                             </div>
                             
