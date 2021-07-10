@@ -1,86 +1,89 @@
 package com.somnath.digital.user.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-/*import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;*/
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-import javax.servlet.ServletException;
-//import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import connectiondb.ConnectionDb;
+import jakarta.servlet.annotation.WebServlet;
 
+import java.sql.*;
+import java.util.Random;
 /**
- * Servlet implementation class CreateUserServlet
+ * Servlet implementation class CreateUser
  */
-//@WebServlet("/addServlet")
+@WebServlet("/addUserServlet")
 public class CreateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	//private static final String statement = null;
-	//private Connection connection;
        
-  /*public void init() {
-    	
-    	try {
-    		Class.forName("oracle.jdbc.driver.OracleDriver");
-			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "SYSTEM", "Password1234");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-    }*/
-
+   
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String number = request.getParameter("tel");
-		String status = request.getParameter("STATUS");
-		
-		PrintWriter out=response.getWriter();
-		out.println("<html><body><h1>Your name= "+name+" and Your Telephone is= "+number+" status= "+status+"</h1></body></html>");
-
-		
-		
-		
-		
-		
-		
-		
-		/*String userid = request.getParameter("USER_ID");
-		String username = request.getParameter("USER_NAME");
-		String telnumber = request.getParameter("TEL_NUM");
-		String status = request.getParameter("STATUS");
-		
 		try {
-			Statement statement=connection.createStatement();
-			int result = statement.executeUpdate("insert into digi values('"+userid+"','"+username+"','"+telnumber+"','"+status+"')");
-			PrintWriter out = response.getWriter();
-			if (result >0) {
-				out.print("<h2>User created</h2>");
-			}else {
-				out.print("<h2>Error Found!</h2>");
+		Connection connection = ConnectionDb.getConnection();
+		String name = request.getParameter("name");
+		int tel_number = Integer.parseInt(request.getParameter("tel_number"));
+		String step = request.getParameter("step");
+		//String password = "C1234";
+		//RandomPwdGenerator pwd = new RandomPwdGenerator();
+		//String password = RandomPwdGenerator.randomPWD;
+		
+		/**
+		 * Random password function from RandomPwdGenerator class
+		 *
+		 */
+		RandomPwdGenerator pwd = new RandomPwdGenerator();
+		String password = pwd.generateRandomChars("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz#$%!@*()^",8);
+		
+		/**
+		 * 
+		 * Random userid creation field
+		 */
+		
+		
+		Random u=new Random();
+		int user_id=100+u.nextInt(899);
+		
+		
+		/**
+		 * Incrementing User id sending data to database.
+		 *
+		PreparedStatement pi=connection.prepareStatement("select max(user_id) from diginew");
+		ResultSet rs=pi.executeQuery();*/
+		
+		
+		
+		/**if(rs.next()) {
+			user_id=rs.getInt(1);
+			user_id++;*/
+			
+			PreparedStatement ps=connection.prepareStatement("insert into digitnew values(?,?,?,?,?)");
+			ps.setInt(1, user_id);
+			ps.setString(2, name);
+			ps.setInt(3, tel_number);
+			ps.setString(4, step);
+			ps.setString(5, password);
+			
+			int i=ps.executeUpdate();
+			
+			if(i>0) {
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
-		} catch (SQLException e) {
+			else {
+				response.sendRedirect("error.jsp");
+			}
+		
+		
+		
+		}
+		catch (Exception e){
 			e.printStackTrace();
 		}
-		
 	}
-	public void destroy() {
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}*/
-		
-		
-	}
-	
 
-	}
+}

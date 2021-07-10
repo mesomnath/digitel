@@ -8,5 +8,6 @@
 </head>
 <body>
 <h2>Hello World!</h2>
+<a href="./AddUser.jsp">Add User</a>
 </body>
 </html>
