@@ -2,7 +2,7 @@
 
 <web-app>
 
-	  <display-name> Archetype Created Web Application</display-name>
+	  <display-name> Archetype Created Web web</display-name>
 	  <servlet>
 	  	<servlet-name>Login</servlet-name>
 	  	<display-name>Login</display-name>
