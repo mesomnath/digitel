@@ -13,7 +13,7 @@ import connectiondb.ConnectionDb;
 import jakarta.servlet.annotation.WebServlet;
 
 import java.sql.*;
-//import java.util.Random;
+
 /**
  * Servlet implementation class CreateUser
  */
@@ -32,6 +32,11 @@ public class CreateUserServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		long tel_number = Long.parseLong(request.getParameter("tel_number"));
 		String step = request.getParameter("step");
+		//Date date = new Date();
+		java.util.Date utilDate = new java.util.Date();
+	    java.sql.Date date = new java.sql.Date(utilDate.getTime());
+		
+		
 		//String password = "C1234";
 		//RandomPwdGenerator pwd = new RandomPwdGenerator();
 		//String password = RandomPwdGenerator.randomPWD;
@@ -67,12 +72,14 @@ public class CreateUserServlet extends HttpServlet {
 			user_id=rs.getInt(1);
 			user_id++;
 			
-			PreparedStatement ps=connection.prepareStatement("insert into digitnew values(?,?,?,?,?)");
+			PreparedStatement ps=connection.prepareStatement("insert into digitnew values(?,?,?,?,?,?,?)");
 			ps.setInt(1, user_id);
 			ps.setString(2, name);
 			ps.setLong(3, tel_number);
 			ps.setString(4, step);
 			ps.setString(5, password);
+			ps.setDate(6, (java.sql.Date) date);
+			ps.setDate(7, (java.sql.Date) date);
 			
 			int i=ps.executeUpdate();
 			

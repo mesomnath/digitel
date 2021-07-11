@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 <style>
     *{
@@ -28,7 +29,7 @@
             <div class="col-md-6">
                 <form method="post" action="addUserServlet">
                 <div class="card">
-                    <div class="card-header text-white h3" style="background-color: #044068;"><b>Add user</b></div>
+                    <div class="card-header text-white h3" style="background-color: #044068;"><i class="bi bi-person-fill"></i><b>&nbsp;Add user</b></div>
                     <div class="card-body">
                         
                             <div class="form-group mt-2">
@@ -56,8 +57,10 @@
                           
                     </div>
                     <div class="card-footer">
-                        <span class="float-left">  </span>
-                        <button type="submit" class="btn btn-success float-right">Add New User</button>
+                        <span class="float-left">  
+                        <a href="./Dashboard.jsp" class="btn bg-dark text-white"><i class="bi bi-arrow-left"></i>&nbsp;Back to Dashboard</a>
+                        </span>
+                        <button type="submit" class="btn btn-success float-right"><i class="bi bi-person-plus-fill"></i>&nbsp;Add User</button>
                     </div>
                 </div>
                 </form>

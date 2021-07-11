@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 <style>
     *{
@@ -33,7 +34,7 @@
                     <div class="card-header text-white h3" style="background-color: #044068;">
                      <div class="row">
                             <div class="col-6">
-                                <b>Users list</b>
+                                <b><i class="bi bi-people-fill"></i>&nbsp;Users list</b>
                             </div>
                             <div class="col-6">
                                 <form action="" method="get">
@@ -83,8 +84,8 @@
 						                <td> <%=Long.parseLong(rs.getString("tel_number")) %></td>
 						                <td style="text-transform:uppercase"> <%=rs.getString("step") %></td>
 						                <td>
-		                                    <a href="#" class="btn btn-sm bg-warning text-dark">Edit</a>
-		                                    <a href="./deleteuser.jsp?id=<%=rs.getInt("user_id")%>" class="btn btn-sm bg-danger text-white">Delete</a>
+		                                    <a href="./deleteuser.jsp?id=<%=rs.getInt("user_id")%>" class="btn btn-sm bg-warning text-dark"><i class="bi bi-pencil-square"></i>&nbsp;Edit</a>
+		                                    <a href="./deleteuser.jsp?id=<%=rs.getInt("user_id")%>" class="btn btn-sm bg-danger text-white"><i class="bi bi-trash-fill"></i>&nbsp;Delete</a>
 		                                </td>
 						               </tr>
 						         <% 
@@ -102,7 +103,7 @@
                     </div>
                     <div class="card-footer">
                        
-                        <a href="./AddUser.jsp" class="btn btn-success float-right">Add New User</a>
+                        <a href="./AddUser.jsp" class="btn btn-success float-right"><i class="bi bi-person-plus-fill"></i>&nbsp;Create New User</a>
                         
                     </div>
                 </div>
