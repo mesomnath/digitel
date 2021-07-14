@@ -8,6 +8,6 @@
 </head>
 <body>
 <h2>Hello World!</h2>
-<a href="./AddUser.jsp">Add User</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./Dashboard.jsp">Dashboard</a>
+<a href="./AddUser.jsp">Add User</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./Dashboard.jsp">Dashboard</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./login.jsp">Login</a>
 </body>
 </html>

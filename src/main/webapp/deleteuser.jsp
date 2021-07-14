@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Delete User</title>
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 
 <%
 String id=request.getParameter("id");
-out.println(id);
+//out.println(id);
 //int id = Integer.parseInt(request.getParameter("user_id"));
 //int u_id =Integer.parseInt(id);
 Class.forName("oracle.jdbc.OracleDriver");

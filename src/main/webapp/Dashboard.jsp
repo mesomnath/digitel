@@ -28,7 +28,7 @@
     <div class="container p-4">
         <div class="row mt-2">
             <div class="col-md-1"></div>
-            <div class="col-md-10">
+            <div class="col-md-12">
                
                 <div class="card">
                     <div class="card-header text-white h3" style="background-color: #044068;">
@@ -52,6 +52,8 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Telephone Number</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Created On</th>
+                                <th scope="col">Last Updated On</th>
                                 <th scope="col">Action</th>
                               </tr>
                             </thead>
@@ -72,7 +74,7 @@
 						    	  query = "SELECT * FROM digitnew WHERE user_id like '%"+search+"%' OR name like '%"+search+"%' OR tel_number like'%"+search+"%'";
 						    	 }
 						    	 else{
-						    	   query="SELECT USER_ID,NAME,TEL_NUMBER,STEP FROM Digitnew";
+						    	   query="SELECT USER_ID,NAME,TEL_NUMBER,STEP,DATE_CREATED,DATE_UPDATED FROM Digitnew";
 						    	 }
 						    	 rs=stmt.executeQuery(query);
 						    	 while(rs.next())
@@ -81,10 +83,12 @@
 						              <tr>
 						                <td scope="row"> <%=Integer.parseInt(rs.getString("user_id"))%></td>
 						                <td> <%=rs.getString("name") %></td>
-						                <td> <%=Long.parseLong(rs.getString("tel_number")) %></td>
+						                <td> <%=Long.parseLong(rs.getString("tel_number")) %></td>						                
 						                <td style="text-transform:uppercase"> <%=rs.getString("step") %></td>
+						                <td> <%=rs.getDate("DATE_CREATED") %></td>
+						                <td> <%=rs.getDate("DATE_UPDATED") %></td>
 						                <td>
-		                                    <a href="./deleteuser.jsp?id=<%=rs.getInt("user_id")%>" class="btn btn-sm bg-warning text-dark"><i class="bi bi-pencil-square"></i>&nbsp;Edit</a>
+		                                    <a href="./edituser.jsp?id=<%=rs.getInt("user_id")%>" class="btn btn-sm bg-warning text-dark"><i class="bi bi-pencil-square"></i>&nbsp;Edit</a>
 		                                    <a href="./deleteuser.jsp?id=<%=rs.getInt("user_id")%>" class="btn btn-sm bg-danger text-white"><i class="bi bi-trash-fill"></i>&nbsp;Delete</a>
 		                                </td>
 						               </tr>
@@ -102,7 +106,7 @@
                           
                     </div>
                     <div class="card-footer">
-                       
+                       <a href="./Logout" class="btn btn-danger float-left"><i class="bi bi-arrow-bar-left"></i></i>&nbsp;Logout</a>
                         <a href="./AddUser.jsp" class="btn btn-success float-right"><i class="bi bi-person-plus-fill"></i>&nbsp;Create New User</a>
                         
                     </div>

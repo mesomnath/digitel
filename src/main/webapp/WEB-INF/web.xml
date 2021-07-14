@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+ 
+ 
 
 <web-app>
 
 	  <display-name> Archetype Created Web web</display-name>
-	  <servlet>
-	  	<servlet-name>Login</servlet-name>
-	  	<display-name>Login</display-name>
-	  	<description></description>
-	  	<servlet-class>com.login.Login</servlet-class>
-	  </servlet>
+	  
 	  <servlet>
 	  	<servlet-name>CreateUserServlet</servlet-name>
 	  	<servlet-class>com.somnath.digital.user.servlets.CreateUserServlet</servlet-class>
@@ -26,10 +24,26 @@
 	  	<description></description>
 	  	<servlet-class>com.somnath.digital.user.servlets.DeleteUserServlet</servlet-class>
 	  </servlet>
-	  <servlet-mapping>
+	  
+	  <servlet>
+	  	<display-name>EditUserServlet</display-name>
+	  	<servlet-name>EditUserServlet</servlet-name>
+	  	<servlet-class>com.somnath.digital.user.servlets.EditUserServlet</servlet-class>
+	  </servlet>
+	  <servlet>
 	  	<servlet-name>Login</servlet-name>
-	  	<url-pattern>/Login</url-pattern>
-	  </servlet-mapping>
+	  	<display-name>Login</display-name>
+	  	<servlet-class>com.somnath.digital.user.servlets.Login</servlet-class>
+	  </servlet>
+	  
+	  <servlet>
+	  	<servlet-name>Logout</servlet-name>
+	  	<display-name>Logout</display-name>
+	  	
+	  	<servlet-class>com.somnath.digital.user.servlets.Logout</servlet-class>
+	  </servlet>
+	  
+	 
 	  <servlet-mapping>
 	  	<servlet-name>CreateUserServlet</servlet-name>
 	  	<url-pattern>/CreateUserServlet</url-pattern>
@@ -41,5 +55,17 @@
 	  <servlet-mapping>
 	  	<servlet-name>DeleteUserServlet</servlet-name>
 	  	<url-pattern>/DeleteUserServlet</url-pattern>
+	  </servlet-mapping>
+	  <servlet-mapping>
+	  	<servlet-name>EditUserServlet</servlet-name>
+	  	<url-pattern>/EditUserServlet</url-pattern>
+	  </servlet-mapping>
+	  <servlet-mapping>
+	  	<servlet-name>Login</servlet-name>
+	  	<url-pattern>/Login</url-pattern>
+	  </servlet-mapping>
+	  <servlet-mapping>
+	  	<servlet-name>Logout</servlet-name>
+	  	<url-pattern>/Logout</url-pattern>
 	  </servlet-mapping>
 </web-app>
