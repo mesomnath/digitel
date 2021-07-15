@@ -13,13 +13,37 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <style>
     *{
-        font-family: 'Inter',sans-serif;
+        font-family: 'Lato',sans-serif;
+        
     }
+    .btn:focus{
+    box-shadow:none !important;
+     }
+     input[type="text"], textarea, select {
+       outline: none;
+       box-shadow:none !important;
+       border:1px solid #ccc !important;
+       }
+       .btn,  input[type="text"], textarea, select, .card, .card-body,.card-footer{
+       border-radius:0px !important;
+       }
+       
 </style>
 <body style="background-color: #efefef;">
+<%
+ 
+	response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+	response.setHeader("Pragma", "no-cache");
+	response.setHeader("Expires","0");
+	
+	if(session.getAttribute("tel_number")==null)
+		response.sendRedirect("login.jsp");
+
+%>
     <nav class="navbar navbar-expand-lg navbar-dark justify-content-center" style="background-color: #044068;">
         <a class="navbar-brand" style="font-size: 38px; font-weight: bold;" href="#">DigiTel</a>
     </nav>

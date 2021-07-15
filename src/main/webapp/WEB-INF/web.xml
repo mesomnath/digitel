@@ -13,12 +13,6 @@
 	  	<servlet-class>com.somnath.digital.user.servlets.CreateUserServlet</servlet-class>
 	  </servlet>
 	  <servlet>
-	  	<servlet-name>CreateUser</servlet-name>
-	  	<display-name>CreateUser</display-name>
-	  	<description></description>
-	  	<servlet-class>com.somnath.digital.user.servlets.CreateUser</servlet-class>
-	  </servlet>
-	  <servlet>
 	  	<servlet-name>DeleteUserServlet</servlet-name>
 	  	<display-name>DeleteUserServlet</display-name>
 	  	<description></description>
@@ -42,15 +36,16 @@
 	  	
 	  	<servlet-class>com.somnath.digital.user.servlets.Logout</servlet-class>
 	  </servlet>
-	  
+	  <servlet>
+	  	<servlet-name>ForgetPasswordServlet</servlet-name>
+	  	<display-name>ForgetPasswordServlet</display-name>
+	  	<description></description>
+	  	<servlet-class>com.somnath.digital.user.servlets.ForgetPasswordServlet</servlet-class>
+	  </servlet>
 	 
 	  <servlet-mapping>
 	  	<servlet-name>CreateUserServlet</servlet-name>
 	  	<url-pattern>/CreateUserServlet</url-pattern>
-	  </servlet-mapping>
-	  <servlet-mapping>
-	  	<servlet-name>CreateUser</servlet-name>
-	  	<url-pattern>/CreateUser</url-pattern>
 	  </servlet-mapping>
 	  <servlet-mapping>
 	  	<servlet-name>DeleteUserServlet</servlet-name>
@@ -67,5 +62,9 @@
 	  <servlet-mapping>
 	  	<servlet-name>Logout</servlet-name>
 	  	<url-pattern>/Logout</url-pattern>
+	  </servlet-mapping>
+	  <servlet-mapping>
+	  	<servlet-name>ForgetPasswordServlet</servlet-name>
+	  	<url-pattern>/ForgetPasswordServlet</url-pattern>
 	  </servlet-mapping>
 </web-app>

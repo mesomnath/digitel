@@ -26,25 +26,26 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		    String tel_number = request.getParameter("tel_number");
-		    String password = request.getParameter("password");		    
+		    String password = request.getParameter("password");	
+		    //int user_id = 0;
 		    try {
 		      Connection con = ConnectionDb.getConnection();		    
-		      PreparedStatement pi=con.prepareStatement("select tel_number,password from digitnew where tel_number='"+tel_number+"' and password='"+password+"'");
+		      PreparedStatement pi=con.prepareStatement("select user_id,tel_number,password from digitnew where tel_number='"+tel_number+"' and password='"+password+"'");
 		      ResultSet rs = pi.executeQuery();
 		      
 		      if(rs.next()) {
-		    	  if(tel_number.equals(tel_number)&& password.equals(password))
-		    	  {
-		    		  response.setContentType("text/html");
+		    	  //if(tel_number.equals(tel_number)&& password.equals(password))
+		    	  //{
+		    		  /*response.setContentType("text/html");
 						PrintWriter pw=response.getWriter();
 						pw.println("<script type=\"text/javascript\">");
 						pw.println("alert('Logged in Successfully');");
 						pw.println("window.location.href = \"Dashboard.jsp\";");
-						pw.println("</script>"); 
-		    	 //response.sendRedirect("Dashboard.jsp");
+						pw.println("</script>"); */
+		    	  response.sendRedirect("Dashboard.jsp");
 		    	  HttpSession session = request.getSession();
 		    	  session.setAttribute("tel_number", tel_number);
-		    	  }
+		    	  //}
 		    	 /* else {
     		  
 		    		    response.setContentType("text/html");

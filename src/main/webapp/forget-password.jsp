@@ -7,11 +7,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Forget Password</title>
     <!--Bootstrap CDN-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -42,24 +42,28 @@
         <div class="row"style="margin-top:100px">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form action="login" method="post">
+                <form action="forget" method="post" oninput='cpassword.setCustomValidity(password.value != cpassword.value ? "Passwords do not match." : "")'>
                 <div class="card">
-                    <div class="card-header text-white h3" style="background-color: #044068;"><b>Login</b></div>
+                    <div class="card-header text-white h3" style="background-color: #044068;"><b>Forget Password</b></div>
                     <div class="card-body">
                         
                             <div class="form-group mt-2">
-                              <label class="mb-0"><b>Username/Mobile Number</b></label>
-                              <input type="text" class="form-control mt-0" name="tel_number">
+                              <label class="mb-0"><b>Enter Mobile Number</b></label>
+                              <input type="text" class="form-control mt-0" name="tel_number" required>
                             
                             </div>
                             <div class="form-group mt-2">
                               <label class="mb-0"><b>Password</b></label>
-                              <input type="password" class="form-control" name="password">
+                              <input type="password" class="form-control" name="password" required>
+                            </div>
+                            <div class="form-group mt-2">
+                              <label class="mb-0"><b>Confirm Password</b></label>
+                              <input type="password" class="form-control" name="cpassword" required>
                             </div>
                     </div>
                     <div class="card-footer">
-                        <span class="float-left"><a href="forget-password.jsp" class="text-dark float-right">Forget Password?</a>  </span>
-                        <button type="submit" class="btn btn-success float-right">Login</button>
+                        <span class="float-left"><a href="login.jsp" class="text-dark float-right">Login</a>  </span>
+                        <button type="submit" class="btn btn-success float-right">Update Password</button>
                     </div>
                 </div>
                 </form>

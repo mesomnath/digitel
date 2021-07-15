@@ -55,6 +55,7 @@ public class CreateUserServlet extends HttpServlet {
 		
 		
 		int user_id=1000; 
+		int access_id=2;
 		
 		
 		/**
@@ -69,7 +70,7 @@ public class CreateUserServlet extends HttpServlet {
 			user_id=rs.getInt(1);
 			user_id++;
 			
-			PreparedStatement ps=connection.prepareStatement("insert into digitnew values(?,?,?,?,?,?,?)");
+			PreparedStatement ps=connection.prepareStatement("insert into digitnew values(?,?,?,?,?,?,?,?)");
 			ps.setInt(1, user_id);
 			ps.setString(2, name);
 			ps.setLong(3, tel_number);
@@ -77,6 +78,7 @@ public class CreateUserServlet extends HttpServlet {
 			ps.setString(5, password);
 			ps.setDate(6, (java.sql.Date) date);
 			ps.setDate(7, (java.sql.Date) date);
+			ps.setInt(8, access_id);
 			
 			int i=ps.executeUpdate();
 			

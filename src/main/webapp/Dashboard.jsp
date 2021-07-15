@@ -14,14 +14,38 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <style>
     *{
-        font-family: 'Inter',sans-serif;
+        font-family: 'Lato',sans-serif;
+        
     }
+    .btn:focus{
+    box-shadow:none !important;
+     }
+     input[type="text"], textarea, select {
+       outline: none;
+       box-shadow:none !important;
+       border:1px solid #ccc !important;
+       }
+       .btn,  input[type="text"], textarea, select, .card, .card-body,.card-footer{
+       border-radius:0px !important;
+       }
+       
 </style>
 
 <body style="background-color: #efefef;">
+<%
+ 
+	response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+	response.setHeader("Pragma", "no-cache");
+	response.setHeader("Expires","0");
+	
+	if(session.getAttribute("tel_number")==null)
+		response.sendRedirect("login.jsp");
+
+%>
     <nav class="navbar navbar-expand-lg navbar-dark justify-content-center" style="background-color: #044068;">
         <a class="navbar-brand" style="font-size: 38px; font-weight: bold;" href="#">DigiTel</a>
     </nav>
@@ -65,16 +89,21 @@
 						     try
 						     {
 						    	 
-						    	 Class.forName("oracle.jdbc.driver.OracleDriver");
+						    	// Class.forName("oracle.jdbc.driver.OracleDriver");
 						    	 con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "SYSTEM", "Password1234");
 						    	 stmt=con.createStatement();
 						    	 String search=request.getParameter("search");
 						    	 String query;
+						    	  //String userid = (String)request.getAttribute("user_id");
+						    	  //int uid = Integer.parseInt(userid);
+						    	  //String password = (String)request.getAttribute("password");
+						    	  //session.setAttribute("user_id", userid);
+						    	  //session.setAttribute("Password", password);
 						    	 if(search!=null){
 						    	  query = "SELECT * FROM digitnew WHERE user_id like '%"+search+"%' OR name like '%"+search+"%' OR tel_number like'%"+search+"%'";
 						    	 }
 						    	 else{
-						    	   query="SELECT USER_ID,NAME,TEL_NUMBER,STEP,DATE_CREATED,DATE_UPDATED FROM Digitnew";
+						    	   query="SELECT USER_ID, NAME,TEL_NUMBER,STEP,DATE_CREATED,DATE_UPDATED FROM Digitnew";
 						    	 }
 						    	 rs=stmt.executeQuery(query);
 						    	 while(rs.next())
@@ -106,7 +135,8 @@
                           
                     </div>
                     <div class="card-footer">
-                       <a href="./Logout" class="btn btn-danger float-left"><i class="bi bi-arrow-bar-left"></i></i>&nbsp;Logout</a>
+                        <a href="./Logout" class="btn btn-danger float-left"><i class="bi bi-arrow-bar-left"></i>&nbsp;Logout</a>
+                        <a href="./Logout" class="btn btn-warning float-left  ml-2"><i class="bi bi-key-fill"></i>&nbsp;Change Password</a>
                         <a href="./AddUser.jsp" class="btn btn-success float-right"><i class="bi bi-person-plus-fill"></i>&nbsp;Create New User</a>
                         
                     </div>
