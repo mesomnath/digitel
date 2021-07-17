@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -27,10 +29,11 @@ public class Login extends HttpServlet {
 		
 		    String tel_number = request.getParameter("tel_number");
 		    String password = request.getParameter("password");	
+		    //int uid = 0;
 		    //int user_id = 0;
 		    try {
 		      Connection con = ConnectionDb.getConnection();		    
-		      PreparedStatement pi=con.prepareStatement("select user_id,tel_number,password from digitnew where tel_number='"+tel_number+"' and password='"+password+"'");
+		      PreparedStatement pi=con.prepareStatement("select user_id,tel_number,password,access_id from digitnew where tel_number='"+tel_number+"' and password='"+password+"'");
 		      ResultSet rs = pi.executeQuery();
 		      
 		      if(rs.next()) {
@@ -42,9 +45,26 @@ public class Login extends HttpServlet {
 						pw.println("alert('Logged in Successfully');");
 						pw.println("window.location.href = \"Dashboard.jsp\";");
 						pw.println("</script>"); */
-		    	  response.sendRedirect("Dashboard.jsp");
+		    	  //response.sendRedirect("Dashboard.jsp");
 		    	  HttpSession session = request.getSession();
 		    	  session.setAttribute("tel_number", tel_number);
+		    	  
+		    	  int accessid = rs.getInt("access_id");
+		    	  int uid = rs.getInt("user_id");
+		    	  System.out.println(accessid +""+ uid);
+		    	  session.setAttribute("user_id", uid);
+		    	  
+		    	  
+		    	  
+		    	  if(accessid == 2) {
+		    		  //response.sendRedirect("user-dashboard.jsp");
+		    		  request.setAttribute("user_id",uid);
+		    		  RequestDispatcher rd = request.getRequestDispatcher("user-dashboard.jsp");
+		    		  rd.forward(request,response);
+		    	  }
+		    	  if(accessid == 1) {
+		    		  response.sendRedirect("Dashboard.jsp");
+		    	  }
 		    	  //}
 		    	 /* else {
     		  

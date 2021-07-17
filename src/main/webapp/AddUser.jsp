@@ -33,7 +33,7 @@
        }
        
 </style>
-<body style="background-color: #efefef;">
+<body style="background-color: #F4F1EA;">
 <%
  
 	response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
@@ -53,7 +53,7 @@
             <div class="col-md-6">
                 <form method="post" action="addUserServlet">
                 <div class="card">
-                    <div class="card-header text-white h3" style="background-color: #044068;"><i class="bi bi-person-fill"></i><b>&nbsp;Add user</b></div>
+                    <div class="card-header text-white h3" style="background-color: #232F3E;"><i class="bi bi-person-fill"></i><b>&nbsp;Add user</b></div>
                     <div class="card-body">
                         
                             <div class="form-group mt-2">
@@ -63,7 +63,7 @@
                             </div>
                             <div class="form-group mt-2">
                               <label class="mb-0"><b>Telephone number</b></label>
-                              <input type="text" class="form-control" name="tel_number" required>
+                              <input type="number" class="form-control" name="tel_number" pattern="^\d{10}$" title="Must contain 10 digit number" required>
                             </div>
                            
                             <div class="form-group mt-2">

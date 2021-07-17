@@ -42,7 +42,10 @@
 	response.setHeader("Pragma", "no-cache");
 	response.setHeader("Expires","0");
 	
+	String uid1 = request.getParameter("user_id");
 	
+	 System.out.println(uid1);
+	 String tel_number=request.getParameter("tel_number");
 	
 	if(session.getAttribute("tel_number")==null)
 		response.sendRedirect("login.jsp");
@@ -60,12 +63,10 @@
                     <div class="card-header text-white h3" style="background-color: #232F3E;">
                      <div class="row">
                             <div class="col-9">
-                                <b><i class="bi bi-people-fill"></i>&nbsp;Users list</b>
+                                <b><i class="bi bi-people-fill"></i>&nbsp;User Information</b>
                             </div>
                             <div class="col-3">
-                                <form action="" method="get">
-                                    <input type="text" name="search" placeholder="Search..." class="form-control"/>
-                                </form> 
+                                
                             </div>
                         </div>
                     </div>
@@ -74,13 +75,11 @@
                         <table class="table table-bordered">
                             <thead>
                               <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Name</th>
+                                <th scope="col">Name </th>
                                 <th scope="col">Telephone Number</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Created On</th>
                                 <th scope="col">Last Updated On</th>
-                                <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -92,10 +91,12 @@
 						     try
 						     {
 						    	 
-						    	// Class.forName("oracle.jdbc.driver.OracleDriver");
+						    	 Class.forName("oracle.jdbc.driver.OracleDriver");
 						    	 con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "SYSTEM", "Password1234");
 						    	 stmt=con.createStatement();
 						    	 String search=request.getParameter("search");
+						    	 String uid=request.getParameter("uid");
+						    	 System.out.println(uid);
 						    	 String query;
 						    	 
 						    	  //String userid = (String)request.getAttribute("user_id");
@@ -107,23 +108,19 @@
 						    	  query = "SELECT * FROM digitnew WHERE user_id like '%"+search+"%' OR name like '%"+search+"%' OR tel_number like'%"+search+"%'";
 						    	 }
 						    	 else{
-						    	   query="SELECT USER_ID, NAME,TEL_NUMBER,STEP,DATE_CREATED,DATE_UPDATED FROM Digitnew";
+						    	   query="SELECT USER_ID, NAME,TEL_NUMBER,STEP,DATE_CREATED,DATE_UPDATED FROM Digitnew where tel_number='"+tel_number+"'";
 						    	 }
 						    	 rs=stmt.executeQuery(query);
 						    	 while(rs.next())
 						    	 {
 						   %>
 						              <tr>
-						                <td scope="row"> <%=Integer.parseInt(rs.getString("user_id"))%></td>
-						                <td> <%=rs.getString("name") %></td>
+						                <td scope="row"> <%=rs.getString("name") %></td>
 						                <td> <%=Long.parseLong(rs.getString("tel_number")) %></td>						                
 						                <td style="text-transform:uppercase"> <%=rs.getString("step") %></td>
 						                <td> <%=rs.getDate("DATE_CREATED") %></td>
 						                <td> <%=rs.getDate("DATE_UPDATED") %></td>
-						                <td>
-		                                    <a href="./edituser.jsp?id=<%=rs.getInt("user_id")%>" class="btn btn-sm bg-warning text-dark"><i class="bi bi-pencil-square"></i>&nbsp;Edit</a>
-		                                    <a href="./deleteuser.jsp?id=<%=rs.getInt("user_id")%>" class="btn btn-sm bg-danger text-white"><i class="bi bi-trash-fill"></i>&nbsp;Delete</a>
-		                                </td>
+						               
 						               </tr>
 						         <% 
 						    	 }
@@ -140,9 +137,9 @@
                     </div>
                    
                     <div class="card-footer">
-                        <a href="./Logout" class="btn btn-danger float-left"><i class="bi bi-arrow-bar-left"></i>&nbsp;Logout</a>
-                        <a href="./forget-password.jsp" class="btn btn-warning float-left  ml-2"><i class="bi bi-key-fill"></i>&nbsp;Change Password</a>
-                        <a href="./AddUser.jsp" class="btn btn-success float-right"><i class="bi bi-person-plus-fill"></i>&nbsp;Create New User</a>
+                        
+                        <a href="./forget-password.jsp" class="btn btn-warning float-left  ml-2"><i class="bi bi-key-fill"></i>&nbsp; Change Password</a>
+                        <a href="./Logout" class="btn btn-danger float-right"><i class="bi bi-arrow-bar-left"></i>&nbsp;Logout</a>
                         
                     </div>
                     
