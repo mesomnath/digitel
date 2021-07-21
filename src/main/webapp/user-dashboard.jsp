@@ -44,8 +44,10 @@
 	
 	String uid1 = request.getParameter("user_id");
 	
-	 System.out.println(uid1);
+	 //System.out.println(uid1);
 	 String tel_number=request.getParameter("tel_number");
+	 //String daysdiff=request.getParameter("daysdiff");
+	// System.out.println(daysdiff);
 	
 	if(session.getAttribute("tel_number")==null)
 		response.sendRedirect("login.jsp");
@@ -137,8 +139,47 @@
                     </div>
                    
                     <div class="card-footer">
-                        
-                        <a href="./forget-password.jsp" class="btn btn-warning float-left  ml-2"><i class="bi bi-key-fill"></i>&nbsp; Change Password</a>
+                        <%
+                             Connection conn;
+						     Statement stmt1;
+						     ResultSet rs1;
+						     
+						     try
+						     {
+						    	 
+						    	 Class.forName("oracle.jdbc.driver.OracleDriver");
+						    	 conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "SYSTEM", "Password1234");
+						    	 stmt1=conn.createStatement();
+						    	 String query="SELECT DATE_UPDATED FROM Digitnew where tel_number='"+tel_number+"'";
+						    	 
+						    	 rs1=stmt1.executeQuery(query);
+						    	 java.util.Date utilDate = new java.util.Date();
+								 java.sql.Date date = new java.sql.Date(utilDate.getTime());
+								 
+						    	 while(rs1.next())
+						    	 {
+
+							    	 Date udate = rs1.getDate("date_updated");
+						    		 long date1 = date.getTime();
+							    	  long date2 = udate.getTime();
+							    	  //long timediff = 0;
+							    	  long timediff = date1 -date2;
+							    	  int daysdiff =(int)(timediff /(1000*60*60*24));
+							    	  int leftday = (int)(60-daysdiff);
+							    	  System.out.println(leftday);
+						   %>
+						   <b>Password Will Expired <%=leftday %> in Days!</b>
+						   <% 
+						    	 }
+						    	 conn.close();   		 
+						    	 }
+						    	 catch(Exception e)
+						    	 {
+						    	 out.print(e);
+						    	 }
+						         %>
+                              
+                        <a href="./forget-password.jsp" class="btn btn-warning  ml-2"><i class="bi bi-key-fill"></i>&nbsp; Change Password</a>
                         <a href="./Logout" class="btn btn-danger float-right"><i class="bi bi-arrow-bar-left"></i>&nbsp;Logout</a>
                         
                     </div>

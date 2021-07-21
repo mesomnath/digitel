@@ -28,11 +28,14 @@ public class ForgetPasswordServlet extends HttpServlet {
 		
 		try {			
 			Connection con = ConnectionDb.getConnection();
+			java.util.Date utilDate = new java.util.Date();
+		    java.sql.Date date = new java.sql.Date(utilDate.getTime());
 			long tel_number= Long.parseLong(request.getParameter("tel_number"));
 			String password = request.getParameter("password");
-			PreparedStatement ps = con.prepareStatement("update digitnew  set password=? where tel_number=?");
-			ps.setLong(2,tel_number);
+			PreparedStatement ps = con.prepareStatement("update digitnew  set password=?, date_updated=? where tel_number=?");
+			ps.setLong(3,tel_number);
 			ps.setString(1, password);
+			ps.setDate(2, date);
 			int i = ps.executeUpdate();
 			if(i>0) {
 				

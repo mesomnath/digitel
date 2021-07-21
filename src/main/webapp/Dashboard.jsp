@@ -41,7 +41,7 @@
 	response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 	response.setHeader("Pragma", "no-cache");
 	response.setHeader("Expires","0");
-	
+	String tel_number=request.getParameter("tel_number");
 	
 	
 	if(session.getAttribute("tel_number")==null)
@@ -97,12 +97,7 @@
 						    	 stmt=con.createStatement();
 						    	 String search=request.getParameter("search");
 						    	 String query;
-						    	 
-						    	  //String userid = (String)request.getAttribute("user_id");
-						    	  //int uid = Integer.parseInt(userid);
-						    	  //String password = (String)request.getAttribute("password");
-						    	  //session.setAttribute("user_id", userid);
-						    	  //session.setAttribute("Password", password);
+						    
 						    	 if(search!=null){
 						    	  query = "SELECT * FROM digitnew WHERE user_id like '%"+search+"%' OR name like '%"+search+"%' OR tel_number like'%"+search+"%'";
 						    	 }
@@ -140,8 +135,48 @@
                     </div>
                    
                     <div class="card-footer">
-                        <a href="./Logout" class="btn btn-danger float-left"><i class="bi bi-arrow-bar-left"></i>&nbsp;Logout</a>
-                        <a href="./forget-password.jsp" class="btn btn-warning float-left  ml-2"><i class="bi bi-key-fill"></i>&nbsp;Change Password</a>
+                    <%
+                             Connection conn;
+						     Statement stmt1;
+						     ResultSet rs1;
+						     
+						     try
+						     {
+						    	 
+						    	 Class.forName("oracle.jdbc.driver.OracleDriver");
+						    	 conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "SYSTEM", "Password1234");
+						    	 stmt1=conn.createStatement();
+						    	 // String tel_number=request.getParameter("tel_number");
+						    	 String query="SELECT DATE_UPDATED FROM Digitnew where ACCESS_ID=1";
+						    	 
+						    	 rs1=stmt1.executeQuery(query);
+						    	 java.util.Date utilDate = new java.util.Date();
+								 java.sql.Date date = new java.sql.Date(utilDate.getTime());
+								 
+						    	 while(rs1.next())
+						    	 {
+
+							    	 Date udate = rs1.getDate("date_updated");
+						    		 long date1 = date.getTime();
+							    	  long date2 = udate.getTime();
+							    	  //long timediff = 0;
+							    	  long timediff = date1 -date2;
+							    	  int daysdiff =(int)(timediff /(1000*60*60*24));
+							    	  int leftday = (int)(60-daysdiff);
+							    	  System.out.println(leftday);
+						   %>
+						   <b>Password Will Expired <%=leftday %> in Days!</b>
+						   <% 
+						    	 }
+						    	 conn.close();   		 
+						    	 }
+						    	 catch(Exception e)
+						    	 {
+						    	 out.print(e);
+						    	 }
+						         %>                    
+                        <a href="./forget-password.jsp" class="text-warning font-weight-bold text-decoration-underline  "><u><i class="bi bi-key-fill"></i>&nbsp;Change Password</u></a>
+                        <a href="./Logout" class="btn btn-danger  ml-2"><i class="bi bi-arrow-bar-left"></i>&nbsp;Logout</a>
                         <a href="./AddUser.jsp" class="btn btn-success float-right"><i class="bi bi-person-plus-fill"></i>&nbsp;Create New User</a>
                         
                     </div>
