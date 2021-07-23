@@ -86,6 +86,7 @@
                             </thead>
                             <tbody>
                             <%
+                             String uid=request.getParameter("id");
                              Connection con;
 						     Statement stmt;
 						     ResultSet rs;
@@ -97,7 +98,7 @@
 						    	 con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "SYSTEM", "Password1234");
 						    	 stmt=con.createStatement();
 						    	 String search=request.getParameter("search");
-						    	 String uid=request.getParameter("uid");
+						    	 // String uid=request.getParameter("uid");
 						    	 System.out.println(uid);
 						    	 String query;
 						    	 
@@ -110,7 +111,7 @@
 						    	  query = "SELECT * FROM digitnew WHERE user_id like '%"+search+"%' OR name like '%"+search+"%' OR tel_number like'%"+search+"%'";
 						    	 }
 						    	 else{
-						    	   query="SELECT USER_ID, NAME,TEL_NUMBER,STEP,DATE_CREATED,DATE_UPDATED FROM Digitnew where tel_number='"+tel_number+"'";
+						    	   query="SELECT NAME,TEL_NUMBER,STEP,DATE_CREATED,DATE_UPDATED FROM Digitnew where user_id='"+uid +"'";
 						    	 }
 						    	 rs=stmt.executeQuery(query);
 						    	 while(rs.next())
@@ -140,6 +141,7 @@
                    
                     <div class="card-footer">
                         <%
+                             String id=request.getParameter("id");
                              Connection conn;
 						     Statement stmt1;
 						     ResultSet rs1;
@@ -150,7 +152,7 @@
 						    	 Class.forName("oracle.jdbc.driver.OracleDriver");
 						    	 conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "SYSTEM", "Password1234");
 						    	 stmt1=conn.createStatement();
-						    	 String query="SELECT DATE_UPDATED FROM Digitnew where tel_number='"+tel_number+"'";
+						    	 String query="SELECT DATE_UPDATED FROM Digitnew where user_id='"+id+ "'";
 						    	 
 						    	 rs1=stmt1.executeQuery(query);
 						    	 java.util.Date utilDate = new java.util.Date();

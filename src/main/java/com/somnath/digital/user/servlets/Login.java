@@ -98,18 +98,18 @@ public class Login extends HttpServlet {
 		    	  System.out.println(daysdiff);
 		    	  if (daysdiff <= 60) {
 		    	  if(accessid == 2) {
-		    		  //response.sendRedirect("user-dashboard.jsp");
+		    		  response.sendRedirect("user-dashboard.jsp?id="+uid);
 		    		  request.setAttribute("user_id",uid);
 		    		  request.setAttribute("daysdiff", daysdiff);
 		    
 		    		  System.out.println(daysdiff);
-		    		  RequestDispatcher rd = request.getRequestDispatcher("user-dashboard.jsp");
-		    		  rd.forward(request,response);
+		    		  //RequestDispatcher rd = request.getRequestDispatcher("user-dashboard.jsp");
+		    		  //rd.forward(request,response);
 		    	  }
 		    	  if(accessid == 1) {
-		    		  //response.sendRedirect("Dashboard.jsp");
-		    		  RequestDispatcher rd = request.getRequestDispatcher("Dashboard.jsp");
-		    		  rd.forward(request,response);
+		    		  response.sendRedirect("Dashboard.jsp?id="+uid);
+		    		  // RequestDispatcher rd = request.getRequestDispatcher("Dashboard.jsp");
+		    		  //rd.forward(request,response);
 		    	  }
 		    	  } else {
 		    		  response.setContentType("text/html");

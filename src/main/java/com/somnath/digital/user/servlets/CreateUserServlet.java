@@ -28,6 +28,7 @@ public class CreateUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+		String userid=request.getParameter("id");
 		Connection connection = ConnectionDb.getConnection();
 		String name = request.getParameter("name");
 		long tel_number = Long.parseLong(request.getParameter("tel_number"));

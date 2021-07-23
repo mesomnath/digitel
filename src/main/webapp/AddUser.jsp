@@ -39,7 +39,7 @@
 	response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
 	response.setHeader("Pragma", "no-cache");
 	response.setHeader("Expires","0");
-	
+	String id=request.getParameter("id");
 	if(session.getAttribute("tel_number")==null)
 		response.sendRedirect("login.jsp");
 
@@ -82,7 +82,7 @@
                     </div>
                     <div class="card-footer">
                         <span class="float-left">  
-                        <a href="./Dashboard.jsp" class="btn bg-dark text-white"><i class="bi bi-arrow-left"></i>&nbsp;Back to Dashboard</a>
+                        <a href="./Dashboard.jsp?id=<%=id%>" class="btn bg-dark text-white"><i class="bi bi-arrow-left"></i>&nbsp;Back to Dashboard</a>
                         </span>
                         <button type="submit" class="btn btn-success float-right"><i class="bi bi-person-plus-fill"></i>&nbsp;Add User</button>
                     </div>

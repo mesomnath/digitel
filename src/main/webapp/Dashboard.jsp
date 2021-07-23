@@ -43,7 +43,7 @@
 	response.setHeader("Expires","0");
 	String tel_number=request.getParameter("tel_number");
 	
-	
+	String userid=request.getParameter("id");
 	if(session.getAttribute("tel_number")==null)
 		response.sendRedirect("login.jsp");
 
@@ -70,7 +70,12 @@
                         </div>
                     </div>
                     <div class="card-body overflow-scroll" style="max-height:480px;overflow-y:scroll">
+                        <!-- -Exporting data table--- -->
                         
+                        <div class="float-right">
+                        <a href="./export.jsp?id=<%=userid%>" class="btn btn-success mb-2"><i class="bi bi-file-earmark-excel-fill"></i> Export Users List</a>
+                        </div>
+                        <!-- ---- -->
                         <table class="table table-bordered">
                             <thead>
                               <tr>
@@ -88,7 +93,7 @@
                              Connection con;
 						     Statement stmt;
 						     ResultSet rs;
-						     
+						     String id=request.getParameter("id");
 						     try
 						     {
 						    	 
@@ -139,7 +144,7 @@
                              Connection conn;
 						     Statement stmt1;
 						     ResultSet rs1;
-						     
+						     String uid=request.getParameter("id");
 						     try
 						     {
 						    	 
@@ -147,7 +152,7 @@
 						    	 conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "SYSTEM", "Password1234");
 						    	 stmt1=conn.createStatement();
 						    	 // String tel_number=request.getParameter("tel_number");
-						    	 String query="SELECT DATE_UPDATED FROM Digitnew where ACCESS_ID=1";
+						    	 String query="SELECT DATE_UPDATED FROM Digitnew where user_id="+uid;
 						    	 
 						    	 rs1=stmt1.executeQuery(query);
 						    	 java.util.Date utilDate = new java.util.Date();
@@ -177,7 +182,7 @@
 						         %>                    
                         <a href="./forget-password.jsp" class="text-warning font-weight-bold text-decoration-underline  "><u><i class="bi bi-key-fill"></i>&nbsp;Change Password</u></a>
                         <a href="./Logout" class="btn btn-danger  ml-2"><i class="bi bi-arrow-bar-left"></i>&nbsp;Logout</a>
-                        <a href="./AddUser.jsp" class="btn btn-success float-right"><i class="bi bi-person-plus-fill"></i>&nbsp;Create New User</a>
+                        <a href="./AddUser.jsp?id=<%=userid%>" class="btn btn-success float-right"><i class="bi bi-person-plus-fill"></i>&nbsp;Create New User</a>
                         
                     </div>
                     
